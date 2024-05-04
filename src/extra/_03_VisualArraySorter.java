@@ -1,5 +1,9 @@
 package extra;
 
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
+import java.util.Random;
+
 import processing.core.PApplet;
 
 /*
@@ -40,19 +44,32 @@ import processing.core.PApplet;
 public class _03_VisualArraySorter extends PApplet {
     static final int WIDTH = 600;
     static final int HEIGHT = 400;
-
+int[] array;
+int i;
     @Override
     public void settings() {
-        
+      	setSize(1000, 1000);
     }
 
     @Override
     public void setup() {
-        
+        array = new int[501];
+        Random rand = new Random();
+       
+        for (i = 0; i <array.length; i++) {	
+			int bob = rand.nextInt();
+			array[i] = bob;
+			noStroke();
+		}
     }
 
     @Override
     public void draw() {
+       
+    	background(100, 100, 100);
+        fill(100, 100, 100);
+        rect(i*(width/array.length), height,width/array.length, -array[i]);
+        stepSort(array);
         
     }
 
