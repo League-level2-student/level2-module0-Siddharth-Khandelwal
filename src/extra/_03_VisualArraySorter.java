@@ -2,6 +2,7 @@ package extra;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.util.Iterator;
 import java.util.Random;
 
 import processing.core.PApplet;
@@ -48,29 +49,35 @@ int[] array;
 int i;
     @Override
     public void settings() {
-      	setSize(1000, 1000);
+      	size(WIDTH, HEIGHT);
     }
-
-    @Override
-    public void setup() {
-        array = new int[501];
-        Random rand = new Random();
+ public void randomer() {
+    Random rand = new Random();
        
         for (i = 0; i <array.length; i++) {	
-			int bob = rand.nextInt();
+			int bob = rand.nextInt(HEIGHT);
 			array[i] = bob;
 			noStroke();
 		}
+ }
+    @Override
+    public void setup() {
+        array = new int[51];
+       randomer();
     }
 
     @Override
     public void draw() {
        
-    	background(100, 100, 100);
-        fill(100, 100, 100);
-        rect(i*(width/array.length), height,width/array.length, -array[i]);
+    	background(0, 100, 0);
+        fill(100, 50, 10);
+        for (int i = 0; i < array.length; i++) {
+	 rect(i*(WIDTH/array.length), HEIGHT, WIDTH/array.length, -array[i]);
+		}
         stepSort(array);
-        
+        if(mousePressed) {
+        	randomer();
+        }
     }
 
     static public void main(String[] passedArgs) {
